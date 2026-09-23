@@ -10,7 +10,7 @@
         <div class="card shadow">
 
             <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Add Result</h4>
+                <h4 class="mb-0">{% if result %}Edit Result{% else %}Add Result{% endif %}</h4>
             </div>
 
             <div class="card-body">
@@ -24,6 +24,7 @@
                                name="student_name"
                                class="form-control"
                                placeholder="Enter student name"
+                               value="{{ result.student_name|default:'' }}"
                                required>
                     </div>
 
@@ -33,6 +34,7 @@
                                name="marks"
                                class="form-control"
                                placeholder="Enter marks"
+                               value="{{ result.marks|default:'' }}"
                                required>
                     </div>
 
@@ -42,11 +44,12 @@
                                name="grade"
                                class="form-control"
                                placeholder="Enter grade"
+                               value="{{ result.grade|default:'' }}"
                                required>
                     </div>
 
                     <button type="submit" class="btn btn-success">
-                        Save Result
+                        {% if result %}Update Result{% else %}Save Result{% endif %}
                     </button>
 
                     <a href="{% url 'result_list' %}"
